@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>777Ryze777 Bio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="parallax-group">
+    <div class="crown" id="crown">
+      <img src="corona.jpg" alt="Corona" class="crown-img" />
+    </div>
+    <div class="container" id="card">
+      <div class="banner">
+        <img src="leonardo.png" alt="Banner" class="banner-img" />
+      </div>
+      <div class="profile-img-wrapper">
+        <img src="avatar.png" alt="Immagine profilo" class="profile-img" />
+      </div>
+      <h1 class="username">𝟩𝟩𝟩𝑅𝓎𝓏𝑒𝟩𝟩𝟩</h1>
+      <div class="user-info">
+        <span class="age">16</span>
+        <span class="flag"><img src="italia.png" alt="Italia" style="width:18px;vertical-align:middle;"></span>
+      </div>
+      <div class="music-player">
+        <audio id="audio" src="parody.mp3"></audio>
+        <button id="playpause" class="music-btn" title="Play/Pausa">▶️</button>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" class="volume-slider">
+      </div>
+      <div class="links icons">
+        <a href="https://discord.gg/Fen5FAg9M8" class="icon-btn" title="Discord">
+          <img src="discord.png" alt="Discord" />
+        </a>
+        <a href="https://discord.gg/uApThNmGGu" class="icon-btn" title="Community">
+          <img src="discord.png" alt="Community" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+  // Parallax animazione sia per la card che per la corona
+  const card = document.getElementById('card');
+  const crown = document.getElementById('crown');
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * -30;
+    card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    crown.style.transform = `rotateY(${x}deg) rotateX(${y}deg) translateY(-40px)`;
+  });
+  document.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    crown.style.transform = 'translateY(-40px)';
+  });
+  crown.style.transform = 'translateY(-40px)';
+
+  // Music player logic
+  const audio = document.getElementById('audio');
+  const playpause = document.getElementById('playpause');
+  const volume = document.getElementById('volume');
+
+  playpause.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playpause.textContent = '⏸️';
+    } else {
+      audio.pause();
+      playpause.textContent = '▶️';
+    }
+  });
+
+  volume.addEventListener('input', () => {
+    audio.volume = volume.value;
+  });
+
+  // Reset play button when audio ends
+  audio.addEventListener('ended', () => {
+    playpause.textContent = '▶️';
+  });
+</script>
+</body>
+</html>
